@@ -3,142 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Fast-Hire USA | Official Recruitment Portal</title>
-    <meta name="theme-color" content="#003366">
-    <link rel="manifest" href="manifest.json">
+    <title>⚡ Fast-Hire Elite | USA Job Portal 2026</title>
+    <meta name="theme-color" content="#1a202c"> <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icon-192x192.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        :root { --primary: #003366; --secondary: #2e7d32; --accent: #ff9900; --bg: #f4f7f6; }
-        body { background: var(--bg); font-family: sans-serif; margin: 0; display: flex; justify-content: center; }
-        
-        #tiktok-bridge { background: var(--accent); color: #000; padding: 15px; text-align: center; position: fixed; top: 0; width: 100%; z-index: 999; font-weight: bold; display: none; box-sizing: border-box; }
-        
-        #app-container { width: 100%; max-width: 480px; background: #fff; min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
-        header { background: var(--primary); color: #fff; padding: 30px 20px; text-align: center; border-bottom: 4px solid var(--accent); }
-        .logo span { color: var(--accent); }
-        .blink { animation: b 1.5s step-end infinite; }
-        @keyframes b { 50% { opacity: 0; } }
+        :root {
+            --dark-bg: #1a202c;
+            --dark-card: #2d3748;
+            --primary-accent: #63b3ed; /* Azul vibrante */
+            --secondary-accent: #81e6d9; /* Turquesa */
+            --warning-accent: #f6ad55; /* Naranja para alertas */
+            --text-light: #e2e8f0;
+            --text-dark: #cbd5e0;
+            --gradient-1: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            --gradient-2: linear-gradient(90deg, #63b3ed 0%, #81e6d9 100%);
+        }
 
-        #main-content { padding: 20px; }
-        .job-card { border: 1px solid #ddd; padding: 20px; margin-bottom: 15px; border-radius: 12px; cursor: pointer; background: #fff; transition: 0.3s; }
-        .job-card:hover { border-color: var(--primary); background: #f0f7ff; }
-        
+        body {
+            background: var(--dark-bg);
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            color: var(--text-light);
+            overflow-x: hidden; /* Evitar scroll horizontal */
+        }
+
+        #tiktok-bridge {
+            background: var(--warning-accent);
+            color: var(--dark-bg);
+            padding: 18px 10px;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10000;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            display: none;
+            box-sizing: border-box;
+            animation: fadeInDown 0.5s ease-out;
+        }
+
+        #app-container {
+            width: 100%;
+            max-width: 480px;
+            background: var(--gradient-1);
+            min-height: 100vh;
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            transform: scale(1); /* Base scale for animation */
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        header {
+            background: var(--dark-bg);
+            color: var(--text-light);
+            padding: 40px 20px 20px;
+            text-align: center;
+            border-bottom: 3px solid var(--primary-accent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before { /* Elemento para un efecto visual sutil */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: rgba(var(--primary-accent), 0.1);
+            transform: skewX(-20deg);
+            z-index: 0;
+            opacity: 0.1;
+        }
+
+        h1.logo {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo span {
+            color: var(--primary-accent);
+            text-shadow: 0 0 10px rgba(99, 179, 237, 0.5);
+        }
+
+        .blink {
+            animation: blinker 1.5s linear infinite;
+        }
+        @keyframes blinker {
+            50% { opacity: 0.6; }
+        }
+
+        #main-content {
+            padding: 30px 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        #step-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--primary-accent);
+            margin-bottom: 25px;
+            text-align: center;
+            animation: fadeIn 0.7s ease-out;
+        }
+
+        .job-card {
+            background: var(--dark-card);
+            border: 1px solid rgba(var(--primary-accent), 0.3);
+            padding: 22px;
+            margin-bottom: 18px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .job-card::before { /* Brillo sutil al pasar el mouse */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(var(--primary-accent), 0.1);
+            transform: skewX(-30deg);
+            transition: all 0.5s ease;
+        }
+
+        .job-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+        }
+        .job-card:hover::before {
+            left: 100%;
+        }
+
+        .job-card strong {
+            display: block;
+            font-size: 1.3rem;
+            color: var(--secondary-accent);
+            margin-bottom: 5px;
+            text-shadow: 0 0 5px rgba(129, 230, 217, 0.3);
+        }
+
+        .job-card span {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
         /* Botón PWA */
-        .btn-install { background: var(--accent); color: #000; border: none; padding: 20px; border-radius: 10px; font-weight: bold; width: 100%; cursor: pointer; display: none; font-size: 1rem; margin-top: 10px; }
-
-        /* Simulador y Locker */
-        .progress-bar { background: #eee; height: 15px; border-radius: 10px; overflow: hidden; margin: 20px 0; }
-        #bar { background: var(--secondary); height: 100%; width: 0%; transition: 0.3s; }
-        .fake-locker-btn { background: var(--secondary); color: #fff; padding: 20px; border-radius: 10px; font-weight: bold; width: 100%; border: none; cursor: pointer; text-transform: uppercase; }
-    </style>
-</head>
-<body>
-
-    <div id="tiktok-bridge">⚠️ OPEN IN EXTERNAL BROWSER TO INSTALL APPLICATION</div>
-
-    <div id="app-container">
-        <header>
-            <div class="blink" style="font-size: 0.8rem;">● SYSTEM ONLINE: RECRUITMENT 2026</div>
-            <h1 class="logo">FAST-HIRE <span>USA</span></h1>
-        </header>
-
-        <main id="main-content">
-            <div id="step-1">
-                <h3 id="step-title">Select a position:</h3>
-                <div class="job-card" onclick="handleJobSelection('Amazon Logistics')">
-                    <strong>Amazon Logistics</strong><br><span>$21.50/hr • Immediate Start</span>
-                </div>
-                <div class="job-card" onclick="handleJobSelection('Remote Data Entry')">
-                    <strong>Remote Data Entry</strong><br><span>$25.00/hr • Work from Home</span>
-                </div>
-                
-                <button id="install-pwa" class="btn-install">📥 INSTALL APP TO APPLY</button>
-            </div>
-
-            <div id="step-2" style="display:none; text-align:center;">
-                <div class="progress-bar"><div id="bar"></div></div>
-                <p id="status-text">> Verifying in-app credentials...</p>
-            </div>
-
-            <div id="step-3" style="display:none; text-align:center;">
-                <h2 style="color:var(--secondary);">VERIFICATION REQUIRED</h2>
-                <p>Complete the human verification within the app to unlock your interview link.</p>
-                <button class="fake-locker-btn" onclick="openLocker()">VERIFY NOW</button>
-            </div>
-        </main>
-    </div>
-
-    <script>
-        // 1. Detección de entorno
-        const isPWA = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-        const isSocial = /TikTok|Instagram|FBAN|FBAV/i.test(navigator.userAgent);
-
-        if (isSocial) document.getElementById('tiktok-bridge').style.display = 'block';
-
-        // 2. Lógica de selección con bloqueo
-        function handleJobSelection(job) {
-            localStorage.setItem('job', job);
-            
-            if (!isPWA) {
-                // Si no está instalado, forzamos el botón de instalación
-                document.getElementById('step-title').innerText = "⚠️ INSTALLATION REQUIRED";
-                const btn = document.getElementById('install-pwa');
-                btn.style.display = 'block';
-                btn.innerText = "📥 INSTALL APP TO APPLY FOR " + job.toUpperCase();
-                alert("Please install the Official App to continue with your " + job + " application.");
-            } else {
-                // Si ya es PWA, iniciamos el simulador
-                startAppFlow();
-            }
+        .btn-install {
+            background: var(--secondary-accent);
+            color: var(--dark-bg);
+            border: none;
+            padding: 22px;
+            border-radius: 12px;
+            font-weight: 700;
+            width: 100%;
+            cursor: pointer;
+            display: none;
+            font-size: 1.1rem;
+            margin-top: 25px;
+            box-shadow: 0 10px 25px rgba(129, 230, 217, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        .btn-install:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 15px 35px rgba(129, 230, 217, 0.6);
+            background: var(--primary-accent); /* Cambia al color primario al hover */
+            color: #fff;
         }
 
-        function startAppFlow() {
-            document.getElementById('step-1').style.display = 'none';
-            document.getElementById('step-2').style.display = 'block';
-            let width = 0;
-            const bar = document.getElementById('bar');
-            const status = document.getElementById('status-text');
-            
-            const interval = setInterval(() => {
-                width++;
-                bar.style.width = width + '%';
-                if(width == 30) status.innerText = "> Syncing with Amazon Database...";
-                if(width == 70) status.innerText = "> Securing local slot...";
-                if(width >= 100) {
-                    clearInterval(interval);
-                    document.getElementById('step-2').style.display = 'none';
-                    document.getElementById('step-3').style.display = 'block';
-                }
-            }, 50);
+        /* Simulador de Carga */
+        .progress-bar {
+            background: var(--dark-card);
+            height: 18px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 40px 0 20px;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        #bar {
+            background: var(--gradient-2);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s linear;
+            border-radius: 10px;
+            position: relative;
+            animation: progressStripe 1s linear infinite; /* Animación de rayado */
+        }
+        @keyframes progressStripe {
+            0% { background-position: 100% 0; }
+            100% { background-position: 0% 0; }
         }
 
-        function openLocker() {
-            // AQUÍ PONES TU LLAMADA A ADBLUEMEDIA
-            alert("Redirecting to Human Verification...");
-        }
-
-        // 3. Manejo de instalación PWA
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            // No mostramos el botón automáticamente, esperamos al clic en un trabajo
-        });
-
-        document.getElementById('install-pwa').addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                if (outcome === 'accepted') deferredPrompt = null;
-            } else {
-                alert("To install: Tap 'Share' then 'Add to Home Screen' (iOS) or check your browser menu (Android).");
-            }
-        });
-
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').catch(() => {});
-        }
-    </script>
-</body>
-</html>
+        #status-text {
+            color: var(--text-dark);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            animation: pulse 1.
