@@ -1,21 +1,32 @@
 {
-  "name": "Fast-Hire USA Portal",
-  "short_name": "FastHire",
-  "start_url": ".",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#003366",
-  "description": "Official US Recruitment Portal 2026",
+  "short_name": "Fast-Hire V5",
+  "name": "Fast-Hire V5: Logistics Specialist",
+  "description": "Plataforma elite de reclutamiento de alto rendimiento.",
   "icons": [
     {
       "src": "icon-192x192.png",
-      "sizes": "192x192",
       "type": "image/png",
+      "sizes": "192x192",
       "purpose": "any maskable"
     },
     {
       "src": "icon-512x512.png",
+      "type": "image/png",
       "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/?utm_source=pwa",
+  "background_color": "#000B18",
+  "theme_color": "#00d2ff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "categories": ["business", "productivity"],
+  "screenshots": [
+    {
+      "src": "screenshot.png",
+      "sizes": "1080x1920",
       "type": "image/png"
     }
   ]
