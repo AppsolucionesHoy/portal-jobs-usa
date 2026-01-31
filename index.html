@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>FAST-HIRE USA | PREMIUM PORTAL</title>
+    <title>FAST-HIRE USA | SECURE PORTAL</title>
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icon-192x192.png">
     <style>
@@ -19,30 +19,27 @@
             background-color: var(--bg-dark);
             background-image: radial-gradient(circle at top right, #001f3f, transparent),
                               radial-gradient(circle at bottom left, #000b1a, transparent);
-            font-family: 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             color: white;
             margin: 0;
             display: flex;
             justify-content: center;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
-        /* Bridge Anti-TikTok Profesional */
         #tiktok-bridge {
             display: none;
-            background: linear-gradient(90deg, #ff9900, #ffcc00);
+            background: #ff9900;
             color: black;
-            padding: 15px;
+            padding: 12px;
             text-align: center;
             font-weight: 800;
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 10000;
-            box-shadow: 0 4px 20px rgba(255, 153, 0, 0.4);
+            font-size: 11px;
             text-transform: uppercase;
-            font-size: 12px;
         }
 
         #app-container {
@@ -50,38 +47,12 @@
             max-width: 450px;
             padding: 20px;
             box-sizing: border-box;
-            position: relative;
         }
 
-        header {
-            text-align: center;
-            padding: 40px 0;
-        }
-
-        .logo-zeus {
-            font-size: 32px;
-            font-weight: 900;
-            letter-spacing: -1px;
-            text-transform: uppercase;
-            margin: 0;
-            text-shadow: 0 0 15px var(--neon-cyan);
-        }
-
+        header { text-align: center; padding: 40px 0; }
+        .logo-zeus { font-size: 32px; font-weight: 900; text-shadow: 0 0 15px var(--neon-cyan); }
         .logo-zeus span { color: var(--neon-cyan); }
 
-        .status-badge {
-            display: inline-block;
-            background: rgba(0, 243, 255, 0.1);
-            border: 1px solid var(--neon-cyan);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-
-        /* Estética de Tarjetas Glassmorphism */
         .card {
             background: var(--glass);
             backdrop-filter: blur(15px);
@@ -89,9 +60,6 @@
             border-radius: 20px;
             padding: 25px;
             margin-bottom: 20px;
-            position: relative;
-            overflow: hidden;
-            transition: 0.3s;
         }
 
         .job-item {
@@ -99,19 +67,36 @@
             border-left: 4px solid var(--neon-blue);
             margin-bottom: 15px;
             background: rgba(255,255,255,0.03);
+            padding: 15px;
+            border-radius: 10px;
             transition: 0.3s;
         }
 
-        .job-item:hover {
-            background: rgba(0, 243, 255, 0.05);
-            transform: scale(1.02);
+        .job-item:hover { background: rgba(0, 243, 255, 0.1); }
+
+        /* Botón de Instalación que BLOQUEA el flujo */
+        .btn-install-required {
+            background: linear-gradient(45deg, #ff9900, #ff5500);
+            color: white;
+            border: none;
+            padding: 22px;
+            width: 100%;
+            border-radius: 15px;
+            font-weight: 900;
+            font-size: 16px;
+            cursor: pointer;
+            display: none; /* Solo aparece al elegir trabajo en navegador */
+            box-shadow: 0 0 20px rgba(255, 85, 0, 0.4);
+            margin-top: 10px;
+            text-transform: uppercase;
         }
 
-        .job-item strong { display: block; font-size: 18px; margin-bottom: 5px; }
-        .job-item span { color: #8899aa; font-size: 14px; }
-
-        /* Botón de Acción Potente */
-        .btn-action {
+        /* Simulador y Locker (Solo visibles dentro de la App) */
+        .loading-wrap, .locker-zone { display: none; text-align: center; }
+        .progress-container { background: rgba(255,255,255,0.1); height: 12px; border-radius: 10px; margin: 30px 0; overflow: hidden; }
+        #bar { width: 0%; height: 100%; background: var(--neon-cyan); box-shadow: 0 0 15px var(--neon-cyan); transition: 0.4s; }
+        
+        .btn-locker {
             background: linear-gradient(45deg, var(--neon-blue), var(--neon-cyan));
             color: white;
             border: none;
@@ -119,142 +104,116 @@
             width: 100%;
             border-radius: 15px;
             font-weight: 900;
-            font-size: 16px;
             cursor: pointer;
-            text-transform: uppercase;
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
-            display: none;
-            margin-top: 10px;
         }
-
-        /* Animación de Carga Zeus */
-        .loading-wrap { display: none; text-align: center; }
-        .progress-container {
-            background: rgba(255,255,255,0.1);
-            height: 10px;
-            border-radius: 10px;
-            margin: 30px 0;
-            overflow: hidden;
-        }
-        #bar {
-            width: 0%;
-            height: 100%;
-            background: var(--neon-cyan);
-            box-shadow: 0 0 15px var(--neon-cyan);
-            transition: 0.4s;
-        }
-
-        #status-msg { font-family: 'Courier New', monospace; font-size: 12px; color: var(--neon-cyan); }
-
-        /* Locker de Seguridad */
-        #locker-zone { display: none; text-align: center; }
-        .success-icon { font-size: 50px; color: var(--neon-cyan); margin-bottom: 20px; }
-
-        .blink { animation: blink 1.5s infinite; }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
     </style>
 </head>
 <body>
 
-    <div id="tiktok-bridge">⚠️ Action Required: Open in External Browser to Apply</div>
+    <div id="tiktok-bridge">⚠️ OPEN IN BROWSER TO INSTALL OFFICIAL APP</div>
 
     <div id="app-container">
         <header>
-            <div class="status-badge blink">● System Encrypted</div>
             <h1 class="logo-zeus">FAST-HIRE<span> USA</span></h1>
         </header>
 
         <main id="zeus-core">
             <div id="step-1" class="card">
-                <h3 style="margin-top:0;">Available Slots:</h3>
-                <div class="card job-item" onclick="handleSelect('Amazon Logistics Specialist')">
+                <h3 id="main-instruction">Select your position:</h3>
+                <div class="job-item" onclick="handleFlow('Amazon Logistics Specialist')">
                     <strong>Amazon Logistics</strong>
-                    <span>$21.50/hr • Remote / In-Person</span>
+                    <span>$21.50/hr • Full Time</span>
                 </div>
-                <div class="card job-item" onclick="handleSelect('Data Entry Analyst')">
+                <div class="job-item" onclick="handleFlow('Remote Data Entry')">
                     <strong>Remote Data Entry</strong>
-                    <span>$25.00/hr • Work From Home</span>
+                    <span>$25.00/hr • Work from Home</span>
                 </div>
-                <button id="install-pwa" class="btn-action">📥 Install Official Portal</button>
+                
+                <button id="btn-force-install" class="btn-install-required" onclick="triggerInstall()">
+                    📥 Install App to Apply
+                </button>
             </div>
 
             <div id="step-2" class="card loading-wrap">
                 <div class="progress-container"><div id="bar"></div></div>
-                <div id="status-msg">> Initializing neural verification...</div>
+                <div id="status-msg" style="color:var(--neon-cyan); font-family:monospace;">> Syncing app credentials...</div>
             </div>
 
             <div id="step-3" class="card locker-zone">
-                <div class="success-icon">✔</div>
-                <h2>SLOT SECURED</h2>
-                <p style="color: #8899aa; font-size: 14px;">Verify your identity to unlock the direct interview invitation link.</p>
-                <button class="btn-action" style="display:block;" onclick="fireLocker()">Verify Now</button>
+                <h2 style="color:var(--neon-cyan);">SUCCESS</h2>
+                <p>Identity verified via App. Complete the final step to unlock your interview link.</p>
+                <button class="btn-locker" onclick="openLocker()">CLAIM LINK NOW</button>
             </div>
         </main>
     </div>
 
     <script>
-        const isPWA = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+        // Verificación de Entorno Standalone (PWA)
+        const isApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
         const isSocial = /TikTok|Instagram|FBAN|FBAV/i.test(navigator.userAgent);
 
         if (isSocial) document.getElementById('tiktok-bridge').style.display = 'block';
 
-        function handleSelect(job) {
-            localStorage.setItem('selected_job', job);
-            
-            if (!isPWA) {
-                // Bloqueo de Contenido: Forzar Instalación
-                const btn = document.getElementById('install-pwa');
-                btn.style.display = 'block';
-                btn.innerText = "📥 UNLOCK " + job.toUpperCase();
-                alert("Security Protocol: Installation required to verify US residence.");
+        function handleFlow(jobName) {
+            localStorage.setItem('target_job', jobName);
+
+            if (!isApp) {
+                // ACCIÓN OBLIGATORIA: Si no es la App, obligamos a instalar
+                document.getElementById('main-instruction').innerText = "⚠️ INSTALLATION REQUIRED";
+                const installBtn = document.getElementById('btn-force-install');
+                installBtn.style.display = 'block';
+                installBtn.innerText = "📥 INSTALL APP TO APPLY FOR " + jobName.toUpperCase();
+                
+                // Animación de foco al botón
+                installBtn.scrollIntoView({ behavior: 'smooth' });
+                alert("Security Protocol: You must install the Official Portal to apply for this $25/hr position.");
             } else {
-                startDeployment();
+                // FLUJO DE DINERO: Solo si ya está instalada
+                startProcess();
             }
         }
 
-        function startDeployment() {
+        function startProcess() {
             document.getElementById('step-1').style.display = 'none';
             document.getElementById('step-2').style.display = 'block';
             let w = 0;
             const b = document.getElementById('bar');
             const s = document.getElementById('status-msg');
-            const msgs = ["> Accessing secure servers...", "> Bypassing queue...", "> Confirming slot..."];
             
             const timer = setInterval(() => {
                 w += 2;
                 b.style.width = w + '%';
-                if(w == 30) s.innerText = msgs[0];
-                if(w == 60) s.innerText = msgs[1];
-                if(w == 90) s.innerText = msgs[2];
+                if(w == 40) s.innerText = "> Verifying device ID...";
+                if(w == 80) s.innerText = "> Bypassing queue...";
                 if(w >= 100) {
                     clearInterval(timer);
                     document.getElementById('step-2').style.display = 'none';
                     document.getElementById('step-3').style.display = 'block';
                 }
-            }, 60);
+            }, 50);
         }
 
-        function fireLocker() {
-            // INTEGRACIÓN ADBLUEMEDIA AQUÍ
+        function openLocker() {
+            // AQUÍ LLAMAS A TU CONTENT LOCKER DE ADBLUEMEDIA
             alert("Redirecting to verification...");
         }
 
-        // Script de Instalación
+        // Lógica de Instalación PWA
         let deferredPrompt;
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
         });
 
-        document.getElementById('install-pwa').addEventListener('click', async () => {
+        async function triggerInstall() {
             if (deferredPrompt) {
                 deferredPrompt.prompt();
                 const { outcome } = await deferredPrompt.userChoice;
                 if (outcome === 'accepted') deferredPrompt = null;
             } else {
-                alert("Please use the browser menu (⋮) and select 'Install App'.");
+                alert("To continue: Tap 'Add to Home Screen' in your browser menu (⋮).");
             }
-        });
+        }
 
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js').catch(()=>{});
