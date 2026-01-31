@@ -3,80 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>FAST-HIRE | ELITE V6</title>
+    <title>FAST-HIRE | ELITE PORTAL V10</title>
+    
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icon-192x192.png">
     <meta name="theme-color" content="#050a10">
 
-    <style>
-        :root { --neon-cyan: #00f3ff; --bg-dark: #050a10; }
-        body { background: var(--bg-dark); color: white; font-family: 'Inter', sans-serif; margin: 0; text-align: center; }
-        #app-container { width: 100%; max-width: 480px; padding: 20px; margin: auto; }
-        .logo-zeus { font-size: 30px; font-weight: 900; margin: 40px 0; text-shadow: 0 0 20px var(--neon-cyan); }
-        .logo-zeus span { color: var(--neon-cyan); }
-        .card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 20px; }
-        .job-item { cursor: pointer; background: rgba(255,255,255,0.02); padding: 15px; border-radius: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; }
-        .btn-install-direct {
-            background: linear-gradient(90deg, #00f3ff, #0066ff);
-            color: #000; border: none; padding: 22px; width: 100%;
-            border-radius: 14px; font-weight: 800; display: none; margin-top: 15px;
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.5); text-transform: uppercase;
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
         }
-        /* Consola Estilo V4/V5 */
-        #step-2 { display: none; background: #000; color: var(--neon-cyan); padding: 20px; border-radius: 10px; text-align: left; font-family: monospace; }
-        #step-3 { display: none; }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <style>
+        :root {
+            --neon-cyan: #00f3ff;
+            --neon-green: #00ff9d;
+            --bg-dark: #050a10;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: radial-gradient(circle at 50% 0%, #001f3f, transparent),
+                              linear-gradient(180deg, #050a10 0%, #000000 100%);
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: white; margin: 0; display: flex; justify-content: center; min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Ocultar UI de Google Translate */
+        .goog-te-banner-frame, .goog-te-gadget-icon, #google_translate_element { display: none !important; }
+        body { top: 0px !important; }
+
+        #app-container { width: 100%; max-width: 480px; padding: 20px; box-sizing: border-box; }
+        
+        header { text-align: center; padding: 45px 0 25px; }
+        .logo-zeus { font-size: 32px; font-weight: 900; letter-spacing: -1.5px; margin: 0; text-shadow: 0 0 25px rgba(0, 243, 255, 0.4); }
+        .logo-zeus span { color: var(--neon-cyan); }
+
+        /* Contador Dinámico Premium */
+        .live-stats {
+            background: rgba(0, 255, 157, 0.05);
+            border: 1px solid rgba(0, 255, 157, 0.2);
+            border-radius: 12px; padding: 12px; font-size: 11px; margin-bottom: 30px;
+            display: flex; justify-content: center; align-items: center; gap: 10px;
+            font-family: 'Courier New', monospace; color: var(--neon-green);
+            letter-spacing: 1px;
+        }
+        .dot { height: 7px; width: 7px; background-color: var(--neon-green); border-radius: 50%; box-shadow: 0 0 12px var(--neon-green); animation: blink 2s infinite; }
+
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px; padding: 25px; margin-bottom: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        /* 3 Opciones de Trabajo */
+        .job-item {
+            cursor: pointer; border: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 12px; background: rgba(255,255,255,0.02);
+            padding: 18px; border-radius: 16px; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .job-item:active { transform: scale(0.97); background: rgba(0, 243, 255, 0.08); }
+        .job-info h4 { margin: 0 0 4px 0; font-size: 16px; color: white; }
+        .job-info p { margin: 0; font-size: 13px; color: #8899aa; }
+        .arrow { color: var(--neon-cyan); font-weight: bold; font-size: 18px; }
+
+        /* Botón de Instalación In-App TikTok/Social */
+        .btn-install-direct {
+            background: linear-gradient(135deg, #00f3ff 0%, #0066ff 100%);
+            color: #000; border: none; padding: 22px; width: 100%;
+            border-radius: 18px; font-weight: 900; display: none; margin-top: 20px;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.4); text-transform: uppercase;
+            letter-spacing: 1px; cursor: pointer;
+        }
+
+        /* Simulador Consola Premium */
+        .console-wrap { display: none; background: #000; border: 1px solid var(--neon-cyan); padding: 25px; border-radius: 15px; font-family: 'Courier New', monospace; text-align: left; min-height: 180px; box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.1); }
+        .console-line { color: var(--neon-cyan); font-size: 12px; margin-bottom: 8px; opacity: 0; animation: fadeIn 0.1s forwards; }
+
+        /* Locker Final */
+        .locker-zone { display: none; text-align: center; }
+        .btn-locker {
+            background: #ffffff; color: #000; border: none; padding: 22px; width: 100%;
+            border-radius: 18px; font-weight: 900; text-transform: uppercase;
+            box-shadow: 0 0 40px rgba(255,255,255,0.2); cursor: pointer;
+        }
+
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        @keyframes fadeIn { to { opacity: 1; } }
     </style>
 </head>
 <body>
 
+    <div id="google_translate_element"></div>
+
     <div id="app-container">
-        <header><h1 class="logo-zeus">FAST-HIRE<span> V6</span></h1></header>
+        <header>
+            <h1 class="logo-zeus">FAST-HIRE<span> V10</span></h1>
+        </header>
+
+        <div class="live-stats">
+            <span class="dot"></span>
+            <span id="visitor-count">2,410</span> CANDIDATES ONLINE
+        </div>
 
         <main id="zeus-core">
             <div id="step-1" class="card">
-                <div class="job-item" onclick="selectJob('Product Tester')">
-                    <strong>Product Tester</strong><span>$35.00/hr ➜</span>
+                <h3 style="margin-top:0; font-size:14px; color:#8899aa; letter-spacing:1px; text-transform:uppercase;">Select your position:</h3>
+                
+                <div class="job-item" onclick="initJobFlow('Logistics Specialist')">
+                    <div class="job-info"><h4>Logistics Specialist</h4><p>$21.50/hr • Full Time</p></div>
+                    <span class="arrow">➜</span>
                 </div>
-                <button id="btn-install-v6" class="btn-install-direct" onclick="triggerDirectInstall()">
-                    📥 INSTALL APP NOW
+
+                <div class="job-item" onclick="initJobFlow('Remote Data Analyst')">
+                    <div class="job-info"><h4>Remote Data Analyst</h4><p>$25.00/hr • Remote</p></div>
+                    <span class="arrow">➜</span>
+                </div>
+
+                <div class="job-item" onclick="initJobFlow('Product Tester')">
+                    <div class="job-info"><h4>Product Tester</h4><p>$35.00/hr • Flexible</p></div>
+                    <span class="arrow">➜</span>
+                </div>
+                
+                <button id="btn-install-main" class="btn-install-direct" onclick="triggerInAppInstall()">
+                    📥 INSTALL APP TO APPLY
                 </button>
             </div>
 
-            <div id="step-2">
+            <div id="step-2" class="console-wrap">
                 <div id="console-output"></div>
             </div>
 
-            <div id="step-3" class="card">
-                <h2>VERIFIED</h2>
-                <button onclick="alert('Locker Open')">ACCESS LINK</button>
+            <div id="step-3" class="card locker-zone">
+                <h1 style="font-size:50px; margin:0;">🚀</h1>
+                <h2 style="color:var(--neon-cyan); margin-top:10px;">ID VERIFIED</h2>
+                <p style="color:#aaa; font-size:14px; margin-bottom:25px;">Your application node is secured. Complete the final step to receive your direct hire link.</p>
+                <button class="btn-locker" onclick="openLocker()">ACCESS DASHBOARD</button>
             </div>
         </main>
     </div>
 
     <script>
         let deferredPrompt;
-        const installBtn = document.getElementById('btn-install-v6');
+        const installBtn = document.getElementById('btn-install-main');
+        const isApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
 
-        // CAPTURAR EL EVENTO DE INSTALACIÓN
+        // Registro de Visitas Dinámico
+        setInterval(() => {
+            document.getElementById('visitor-count').innerText = (Math.floor(Math.random() * (2800 - 2100) + 2100)).toLocaleString();
+        }, 4000);
+
+        // Captura del evento de instalación nativo (TikTok Browser compatible)
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            // Solo mostramos el botón si el navegador está listo para instalar
-            console.log("Sistema listo para instalar PWA");
         });
 
-        function selectJob(job) {
-            const isApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+        function initJobFlow(job) {
+            localStorage.setItem('selectedJob', job);
             if (isApp) {
-                runSimulator();
+                runPremiumSimulator();
             } else {
                 installBtn.style.display = 'block';
                 installBtn.innerText = "📥 INSTALL TO APPLY: " + job.toUpperCase();
+                installBtn.scrollIntoView({ behavior: 'smooth' });
             }
         }
 
-        async function triggerDirectInstall() {
-            // Si tenemos el evento capturado, lo disparamos directamente
+        async function triggerInAppInstall() {
+            // Intentamos disparar el prompt nativo dentro del navegador actual (TikTok/Instagram)
             if (deferredPrompt) {
                 deferredPrompt.prompt();
                 const { outcome } = await deferredPrompt.userChoice;
@@ -85,25 +188,51 @@
                     installBtn.style.display = 'none';
                 }
             } else {
-                // Si NO hay deferredPrompt, es que Chrome no detecta el manifest o ya está instalada
-                // En vez de un alert molesto, intentamos forzar la detección
-                console.log("Buscando manifest...");
-                alert("Please wait a moment while the secure installer initializes, or tap 'Add to Home Screen' in your browser menu.");
+                // Fallback silencioso si el navegador aún no dispara el evento
+                console.log("Waiting for installation protocol...");
             }
         }
 
-        function runSimulator() {
+        function runPremiumSimulator() {
             document.getElementById('step-1').style.display = 'none';
             document.getElementById('step-2').style.display = 'block';
-            // Lógica de consola V5...
+            
+            const output = document.getElementById('console-output');
+            const lines = [
+                "> BOOTING SECURE INTERFACE...",
+                "> CONNECTING TO RECRUITMENT NODE...",
+                "> DEVICE VERIFIED: STATUS SECURE",
+                "> ASSIGNING TOKEN FOR: " + localStorage.getItem('selectedJob'),
+                "> PREPARING FINAL ONBOARDING..."
+            ];
+
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i < lines.length) {
+                    const div = document.createElement('div');
+                    div.className = 'console-line';
+                    div.innerText = lines[i];
+                    output.appendChild(div);
+                    i++;
+                } else {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        document.getElementById('step-2').style.display = 'none';
+                        document.getElementById('step-3').style.display = 'block';
+                    }, 1200);
+                }
+            }, 800);
         }
 
-        // REGISTRO DE SERVICE WORKER OBLIGATORIO PARA PWA
+        function openLocker() {
+            // Aquí integras tu link de AdBlueMedia/CPAGrip
+            alert("Redirecting to verification...");
+        }
+
+        // Registro obligatorio del Service Worker para que TikTok detecte la PWA
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js').then(reg => {
-                    console.log('SW Registered', reg);
-                }).catch(err => console.log('SW Failed', err));
+                navigator.serviceWorker.register('sw.js').catch(()=>{});
             });
         }
     </script>
