@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>FAST-HIRE | ELITE GLOBAL V2</title>
+    <title>FAST-HIRE | ELITE V3</title>
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icon-192x192.png">
     
@@ -19,195 +19,244 @@
             --neon-cyan: #00f3ff;
             --neon-blue: #0066ff;
             --bg-dark: #050a10;
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(255, 255, 255, 0.04);
+            --glass-border: rgba(255, 255, 255, 0.09);
         }
 
         body {
             background-color: var(--bg-dark);
-            background-image: radial-gradient(circle at 50% -20%, #003366, transparent),
-                              radial-gradient(circle at 0% 100%, #000b1a, transparent);
-            font-family: 'Inter', -apple-system, sans-serif;
+            background-image: radial-gradient(circle at 50% 0%, #002b55, transparent),
+                              radial-gradient(circle at 50% 100%, #000000, transparent);
+            font-family: 'Inter', system-ui, sans-serif;
             color: white; margin: 0; display: flex; justify-content: center; min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* Ocultar barra de Google Translate */
-        .goog-te-banner-frame.skiptranslate, .goog-te-gadget-icon { display: none !important; }
+        /* Ocultar elementos de traducción */
+        .goog-te-banner-frame, .goog-te-gadget-icon { display: none !important; }
         body { top: 0px !important; }
         #google_translate_element { display: none; }
 
-        #tiktok-bridge {
-            display: none; background: #ff9900; color: #000; padding: 14px;
-            text-align: center; font-weight: 800; position: fixed; top: 0; width: 100%;
-            z-index: 10000; font-size: 11px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-        }
+        #app-container { width: 100%; max-width: 480px; padding: 20px; box-sizing: border-box; position: relative; }
 
-        #app-container { width: 100%; max-width: 450px; padding: 25px; box-sizing: border-box; }
-
-        header { text-align: center; padding: 50px 0 20px; }
-        .logo-zeus { font-size: 34px; font-weight: 900; letter-spacing: -1.5px; margin: 0; text-shadow: 0 0 20px rgba(0, 243, 255, 0.4); }
+        header { text-align: center; padding: 40px 0 20px; }
+        .logo-zeus { font-size: 32px; font-weight: 900; letter-spacing: -1px; margin: 0; text-shadow: 0 0 25px rgba(0, 243, 255, 0.3); }
         .logo-zeus span { color: var(--neon-cyan); }
 
-        /* Contador de Visitas Zeus */
+        /* Contador V3 */
         .live-stats {
-            background: rgba(0, 243, 255, 0.1);
-            border: 1px solid var(--neon-cyan);
-            border-radius: 10px;
-            padding: 8px;
-            font-size: 12px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
+            background: linear-gradient(90deg, rgba(0, 243, 255, 0.1), transparent);
+            border-left: 3px solid var(--neon-cyan);
+            padding: 10px; font-size: 12px; margin-bottom: 25px;
+            display: flex; align-items: center; gap: 10px; color: #aag;
         }
-        .dot { height: 8px; width: 8px; background-color: #00ff00; border-radius: 50%; display: inline-block; box-shadow: 0 0 10px #00ff00; }
+        .dot { height: 6px; width: 6px; background-color: #00ff00; border-radius: 50%; box-shadow: 0 0 8px #00ff00; }
 
         .card {
             background: var(--glass);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
             border: 1px solid var(--glass-border);
-            border-radius: 24px; padding: 25px; margin-bottom: 20px;
+            border-radius: 20px; padding: 22px; margin-bottom: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
         }
 
         .job-item {
-            cursor: pointer; border-left: 3px solid var(--neon-blue);
-            margin-bottom: 15px; background: rgba(255,255,255,0.02);
-            padding: 18px; border-radius: 12px; transition: 0.3s;
+            cursor: pointer; border: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 12px; background: rgba(0,0,0,0.2);
+            padding: 16px; border-radius: 14px; transition: 0.3s;
+            display: flex; justify-content: space-between; align-items: center;
         }
-        .job-item:hover { background: rgba(0, 243, 255, 0.05); transform: translateX(5px); }
+        .job-item:active { transform: scale(0.98); }
+        .job-info h4 { margin: 0 0 5px 0; font-size: 16px; color: white; }
+        .job-info p { margin: 0; font-size: 13px; color: #8899aa; }
+        .arrow { color: var(--neon-cyan); font-weight: bold; }
 
-        .btn-install-required {
-            background: linear-gradient(135deg, #ff9900 0%, #ff6600 100%);
-            color: white; border: none; padding: 22px; width: 100%;
-            border-radius: 16px; font-weight: 800; display: none; margin-top: 10px;
-            box-shadow: 0 8px 25px rgba(255, 102, 0, 0.3); text-transform: uppercase;
+        /* Botón Universal (Cambia según OS) */
+        .btn-install-smart {
+            background: linear-gradient(135deg, #0066ff 0%, #00ccff 100%);
+            color: white; border: none; padding: 18px; width: 100%;
+            border-radius: 14px; font-weight: 800; display: none; margin-top: 15px;
+            box-shadow: 0 0 20px rgba(0, 204, 255, 0.3); text-transform: uppercase;
+            animation: pulse 2s infinite;
         }
 
+        /* Modal iOS (Protocolo Apple) */
+        #ios-modal {
+            display: none; position: fixed; bottom: 0; left: 0; width: 100%;
+            background: rgba(20, 20, 20, 0.95); backdrop-filter: blur(20px);
+            border-top: 1px solid var(--glass-border); padding: 30px 20px 50px;
+            z-index: 9999; text-align: center; border-radius: 20px 20px 0 0;
+            box-sizing: border-box; animation: slideUp 0.4s ease;
+        }
+        .ios-icon { font-size: 24px; margin-bottom: 10px; display: block; }
+        .ios-step { margin-bottom: 15px; color: #ccc; font-size: 14px; }
+        .ios-step strong { color: var(--neon-cyan); }
+
+        /* Simulador y Locker */
         .loading-wrap, .locker-zone { display: none; text-align: center; }
-        .progress-container { background: rgba(255,255,255,0.05); height: 8px; border-radius: 10px; margin: 35px 0 15px; overflow: hidden; }
-        #bar { width: 0%; height: 100%; background: linear-gradient(90deg, var(--neon-blue), var(--neon-cyan)); box-shadow: 0 0 15px var(--neon-cyan); transition: 0.3s; }
+        .progress-bar { background: rgba(255,255,255,0.1); height: 6px; border-radius: 10px; margin: 30px 0; overflow: hidden; }
+        #bar { width: 0%; height: 100%; background: var(--neon-cyan); transition: 0.3s; }
         
         .btn-locker {
-            background: linear-gradient(135deg, var(--neon-blue), var(--neon-cyan));
-            color: white; border: none; padding: 20px; width: 100%;
-            border-radius: 16px; font-weight: 800; box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+            background: white; color: black; border: none; padding: 20px; width: 100%;
+            border-radius: 14px; font-weight: 900; box-shadow: 0 0 25px rgba(255,255,255,0.2);
         }
 
-        .blink { animation: blink 2s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(0, 204, 255, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(0, 204, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 204, 255, 0); } }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
     </style>
 </head>
 <body>
 
     <div id="google_translate_element"></div>
-    <div id="tiktok-bridge">⚠️ SECURITY: OPEN IN BROWSER TO INSTALL APP</div>
 
     <div id="app-container">
         <header>
-            <h1 class="logo-zeus">FAST-HIRE<span> ELITE V2</span></h1>
+            <h1 class="logo-zeus">FAST-HIRE<span> V3</span></h1>
         </header>
 
         <div class="live-stats">
-            <span class="dot blink"></span>
-            <span id="visitor-count">1,482</span> users active in your region
+            <span class="dot"></span>
+            <span id="visitor-count">1,842</span> candidates online
         </div>
 
         <main id="zeus-core">
             <div id="step-1" class="card">
-                <h3 style="margin-top:0; font-size:18px;">Global Opportunities:</h3>
-                <div class="job-item" onclick="handleFlow('Amazon Logistics Specialist')">
-                    <strong>Logistics Specialist</strong>
-                    <span>$21.50/hr • High Demand</span>
+                <h3 style="margin-top:0; font-size:16px; opacity:0.8; text-transform:uppercase;">Select Position:</h3>
+                
+                <div class="job-item" onclick="handleJobClick('Amazon Logistics')">
+                    <div class="job-info">
+                        <h4>Logistics Specialist</h4>
+                        <p>$21.50/hr • Immediate Start</p>
+                    </div>
+                    <span class="arrow">➔</span>
                 </div>
-                <div class="job-item" onclick="handleFlow('Remote Data Entry')">
-                    <strong>Remote Data Analyst</strong>
-                    <span>$25.00/hr • Instant Setup</span>
+
+                <div class="job-item" onclick="handleJobClick('Remote Data Entry')">
+                    <div class="job-info">
+                        <h4>Remote Data Analyst</h4>
+                        <p>$25.00/hr • Work from Home</p>
+                    </div>
+                    <span class="arrow">➔</span>
                 </div>
                 
-                <button id="btn-force-install" class="btn-install-required" onclick="triggerInstall()">
-                    📥 INSTALL APP TO ACCESS
+                <button id="btn-smart-install" class="btn-install-smart" onclick="executeInstallProtocol()">
+                    📥 INSTALL APP TO CONTINUE
                 </button>
             </div>
 
             <div id="step-2" class="card loading-wrap">
-                <div class="progress-container"><div id="bar"></div></div>
-                <div id="status-msg" style="color:var(--neon-cyan); font-family:monospace; font-size:11px;">> Analyzing local node...</div>
+                <div class="progress-bar"><div id="bar"></div></div>
+                <div id="status-msg" style="color:var(--neon-cyan); font-family:monospace; font-size:12px;">> SYSTEM CHECK...</div>
             </div>
 
             <div id="step-3" class="card locker-zone">
-                <div style="font-size:40px; margin-bottom:15px;">🚀</div>
-                <h2>READY FOR DEPLOYMENT</h2>
-                <p style="color:#8899aa; font-size:14px;">Complete the final verification within the App to receive your onboarding link.</p>
-                <button class="btn-locker" onclick="openLocker()">CLAIM POSITION</button>
+                <h2 style="color:white; margin-bottom:10px;">APP VERIFIED</h2>
+                <p style="color:#aaa; font-size:14px; margin-bottom:20px;">Complete the final security check to unlock your interview link.</p>
+                <button class="btn-locker" onclick="openLocker()">VERIFY & START</button>
             </div>
         </main>
     </div>
 
+    <div id="ios-modal" onclick="this.style.display='none'">
+        <div class="ios-icon">📲</div>
+        <h3 style="margin-top:0;">Install to Continue</h3>
+        <p class="ios-step">1. Tap the <strong>Share Button</strong> <span style="font-size:18px">⬆️</span> below.</p>
+        <p class="ios-step">2. Scroll down and select <strong>"Add to Home Screen"</strong> <span style="font-size:18px">➕</span>.</p>
+        <p class="ios-step" style="font-size:12px; opacity:0.7;">(Tap screen to close)</p>
+    </div>
+
     <script>
-        // 1. Contador de Visitas Dinámico
-        function updateVisitors() {
-            let count = Math.floor(Math.random() * (1600 - 1400) + 1400);
-            document.getElementById('visitor-count').innerText = count.toLocaleString();
-        }
-        setInterval(updateVisitors, 5000);
-
+        // 1. Detección de Sistema Operativo
+        const ua = navigator.userAgent;
+        const isIOS = /iPhone|iPad|iPod/i.test(ua);
+        const isAndroid = /Android/i.test(ua);
         const isApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-        const isSocial = /TikTok|Instagram|FBAN|FBAV/i.test(navigator.userAgent);
 
-        if (isSocial) document.getElementById('tiktok-bridge').style.display = 'block';
+        // 2. Contador Dinámico
+        function updateStats() {
+            let n = Math.floor(Math.random() * (2200 - 1800) + 1800);
+            document.getElementById('visitor-count').innerText = n.toLocaleString();
+        }
+        setInterval(updateStats, 4000);
 
-        function handleFlow(jobName) {
-            if (!isApp) {
-                const installBtn = document.getElementById('btn-force-install');
-                installBtn.style.display = 'block';
-                installBtn.innerText = "📥 INSTALL APP TO UNLOCK " + jobName.toUpperCase();
-                alert("Please install the App to proceed.");
+        // 3. Manejo de Clics
+        function handleJobClick(job) {
+            localStorage.setItem('job_target', job);
+
+            if (isApp) {
+                // Si ya está en la App -> Inicia el Locker
+                startSimulation();
             } else {
-                startProcess();
+                // Si está en Navegador -> Muestra Botón de Instalación
+                const btn = document.getElementById('btn-smart-install');
+                btn.style.display = 'block';
+                btn.innerText = "📥 INSTALL APP TO UNLOCK " + job.toUpperCase();
+                btn.scrollIntoView({ behavior: 'smooth' });
+                
+                // Pequeña vibración si es posible
+                if(navigator.vibrate) navigator.vibrate(50);
             }
         }
 
-        function startProcess() {
+        // 4. Protocolo de Instalación Híbrido
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+        });
+
+        function executeInstallProtocol() {
+            if (isIOS) {
+                // PROTOCOLO APPLE: Mostrar guía manual
+                document.getElementById('ios-modal').style.display = 'block';
+            } else {
+                // PROTOCOLO ANDROID: Intentar instalación automática
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            console.log('User accepted A2HS prompt');
+                            deferredPrompt = null;
+                        }
+                    });
+                } else {
+                    // Fallback si no salta el prompt (ej: TikTok interno)
+                    alert("To install: Tap the menu dots (⋮) and select 'Install App' or 'Open in Chrome'.");
+                }
+            }
+        }
+
+        // 5. Simulación y Locker (Solo corre dentro de la App)
+        function startSimulation() {
             document.getElementById('step-1').style.display = 'none';
             document.getElementById('step-2').style.display = 'block';
+            
             let w = 0;
             const b = document.getElementById('bar');
             const s = document.getElementById('status-msg');
             
-            const timer = setInterval(() => {
-                w += 2;
+            const t = setInterval(() => {
+                w += 4;
                 b.style.width = w + '%';
-                if(w == 30) s.innerText = "> Syncing international database...";
-                if(w == 70) s.innerText = "> Verifying App security token...";
-                if(w >= 100) {
-                    clearInterval(timer);
+                if(w == 20) s.innerText = "> AUTHENTICATING DEVICE...";
+                if(w == 60) s.innerText = "> SECURING CONNECTION...";
+                if(w == 100) {
+                    clearInterval(t);
                     document.getElementById('step-2').style.display = 'none';
                     document.getElementById('step-3').style.display = 'block';
                 }
-            }, 60);
+            }, 50);
         }
 
         function openLocker() {
-            // INTEGRACIÓN ADBLUEMEDIA
-            alert("Redirecting...");
-        }
-
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault(); deferredPrompt = e;
-        });
-
-        async function triggerInstall() {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-            } else {
-                alert("Use your browser menu to 'Add to Home Screen'.");
-            }
+            // ** SCRIPT DE ADBLUEMEDIA **
+            alert("Opening Secure Verification...");
+            // window.location.href = "TU_LINK_AQUI";
         }
 
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').catch(()=>{});
+            navigator.serviceWorker.register('sw.js');
         }
     </script>
 </body>
