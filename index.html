@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast-Hire Portal | Remote & Warehouse Positions</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192x192.png">
+</head>
+<body>
+    <div id="app-container">
+        <header>
+            <div class="header-top">
+                <span class="live-indicator">● LIVE SLOTS AVAILABLE</span>
+            </div>
+            <h1 class="logo">FAST-HIRE <span>USA</span></h1>
+        </header>
+
+        <main id="main-content">
+            <div id="step-1">
+                <h3>Select Position:</h3>
+                <div class="job-card" onclick="selectJob('Amazon Warehouse')">Amazon Warehouse ($21/hr)</div>
+                <div class="job-card" onclick="selectJob('Data Entry Remote')">Data Entry Remote ($25/hr)</div>
+                <div class="job-card" onclick="selectJob('Package Handler')">Package Handler ($19/hr)</div>
+            </div>
+
+            <div id="step-2" style="display:none;">
+                <div class="loading-area">
+                    <p id="status-text">> Checking eligibility in your area...</p>
+                    <div class="progress-bar"><div id="bar"></div></div>
+                </div>
+            </div>
+
+            <div id="step-3" style="display:none;">
+                <h2 style="color: #2e7d32;">SUCCESS: SLOTS FOUND!</h2>
+                <p>To access the direct application link and bypass the waiting list, please complete the security verification below.</p>
+                <div id="adbluemedia-locker">
+                    <button class="btn-verify" onclick="location.reload()">VERIFY NOW</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="zeus.js"></script>
+</body>
+</html>
