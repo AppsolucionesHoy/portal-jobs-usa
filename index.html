@@ -2,45 +2,102 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fast-Hire Portal | Remote & Warehouse Positions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Fast-Hire Portal | USA Jobs 2026</title>
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icon-192x192.png">
+    <meta name="theme-color" content="#003366">
 </head>
 <body>
+    <div id="tiktok-bridge" style="display:none;">
+        <div class="bridge-content">
+            <p>⚠️ <strong>IMPORTANT:</strong> To finalize your application, tap the <strong>three dots (...)</strong> and select <strong>"Open in Browser"</strong></p>
+        </div>
+    </div>
+
     <div id="app-container">
         <header>
             <div class="header-top">
-                <span class="live-indicator">● LIVE SLOTS AVAILABLE</span>
+                <span class="live-indicator blink">● LIVE RECRUITMENT ACTIVE</span>
             </div>
             <h1 class="logo">FAST-HIRE <span>USA</span></h1>
         </header>
 
         <main id="main-content">
             <div id="step-1">
-                <h3>Select Position:</h3>
-                <div class="job-card" onclick="selectJob('Amazon Warehouse')">Amazon Warehouse ($21/hr)</div>
-                <div class="job-card" onclick="selectJob('Data Entry Remote')">Data Entry Remote ($25/hr)</div>
-                <div class="job-card" onclick="selectJob('Package Handler')">Package Handler ($19/hr)</div>
+                <h3>Available Positions in your Area:</h3>
+                <div class="job-card" onclick="selectJob('Amazon Logistics')">
+                    <strong>Amazon Logistics</strong>
+                    <span>$21.50/hr - Full Time</span>
+                </div>
+                <div class="job-card" onclick="selectJob('Remote Data Entry')">
+                    <strong>Remote Data Entry</strong>
+                    <span>$25.00/hr - Work from Home</span>
+                </div>
+                <div class="job-card" onclick="selectJob('Package Handler')">
+                    <strong>Package Handler</strong>
+                    <span>$19.00/hr - Flexible Hours</span>
+                </div>
+                
+                <button id="install-pwa" style="display:none;" class="btn-install">
+                    📥 INSTALL OFFICIAL JOB APP
+                </button>
             </div>
 
             <div id="step-2" style="display:none;">
                 <div class="loading-area">
-                    <p id="status-text">> Checking eligibility in your area...</p>
+                    <p id="status-text">> Checking position availability...</p>
                     <div class="progress-bar"><div id="bar"></div></div>
                 </div>
             </div>
 
             <div id="step-3" style="display:none;">
-                <h2 style="color: #2e7d32;">SUCCESS: SLOTS FOUND!</h2>
-                <p>To access the direct application link and bypass the waiting list, please complete the security verification below.</p>
+                <div class="success-box">
+                    <h2>APPLICATION SECURED!</h2>
+                    <p>To access your direct interview link and bypass the queue, complete the official human verification.</p>
+                </div>
                 <div id="adbluemedia-locker">
-                    <button class="btn-verify" onclick="location.reload()">VERIFY NOW</button>
+                    <div class="fake-locker-btn" onclick="startVerification()">VERIFY STATUS NOW</div>
                 </div>
             </div>
         </main>
     </div>
+
     <script src="zeus.js"></script>
+    <script>
+        // Registro del Service Worker para PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('SW Registered'))
+                .catch(err => console.log('SW Failed', err));
+            });
+        }
+
+        // Detección de TikTok para mostrar el Bridge
+        if (navigator.userAgent.includes("TikTok") || navigator.userAgent.includes("Instagram")) {
+            document.getElementById('tiktok-bridge').style.display = 'block';
+        }
+
+        // Lógica de instalación PWA
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById('install-pwa').style.display = 'block';
+        });
+
+        document.getElementById('install-pwa').addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    document.getElementById('install-pwa').style.display = 'none';
+                }
+                deferredPrompt = null;
+            }
+        });
+    </script>
 </body>
 </html>
