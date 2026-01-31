@@ -196,42 +196,57 @@
         }
 
         // 2. LÓGICA DE BARRA DE PROGRESO Y NAVEGACIÓN
-        function selectJob(jobName) {
-            console.log("Job Selected: " + jobName);
-            document.getElementById('step-1').style.display = 'none';
-            document.getElementById('step-2').style.display = 'block';
+function selectJob(jobName) {
+    localStorage.setItem('selectedJob', jobName);
+    const installBtn = document.getElementById('install-pwa');
 
-            let bar = document.getElementById('bar');
-            let status = document.getElementById('status-text');
-            let width = 0;
-            
-            let messages = [
-                "> Connecting to server...",
-                "> Verifying US residency...",
-                "> Checking " + jobName + " database...",
-                "> Slot confirmed available...",
-                "> Generating secure link..."
-            ];
-            
-            let msgIndex = 0;
-            let interval = setInterval(() => {
-                width += 1; // Velocidad de carga
-                bar.style.width = width + '%';
+    // Si el botón de instalar está visible, forzamos la instalación primero
+    if (installBtn && installBtn.style.display === 'block') {
+        installBtn.innerText = "📥 INSTALL APP TO START " + jobName.toUpperCase() + " PROCESS";
+        installBtn.style.background = "#ff9900";
+        installBtn.style.color = "#000";
+        installBtn.scrollIntoView({ behavior: 'smooth' });
+        return; // Detiene la ejecución aquí
+    }
 
-                if (width % 20 === 0 && msgIndex < messages.length) {
-                    status.innerText = messages[msgIndex];
-                    msgIndex++;
-                }
+    // Si ya es PWA o no hay botón, empieza la carga normal
+    proceedToLoading();
+}
 
-                if (width >= 100) {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        document.getElementById('step-2').style.display = 'none';
-                        document.getElementById('step-3').style.display = 'block';
-                    }, 500);
-                }
-            }, 40); // 40ms * 100 = 4 segundos de espera (ideal para ansiedad)
+function proceedToLoading() {
+    document.getElementById('step-1').style.display = 'none';
+    document.getElementById('step-2').style.display = 'block';
+    
+    let bar = document.getElementById('bar');
+    let status = document.getElementById('status-text');
+    let width = 0;
+    let jobName = localStorage.getItem('selectedJob') || "Position";
+    
+    let messages = [
+        "> Connecting to server...",
+        "> Verifying US residency...",
+        "> Checking " + jobName + " database...",
+        "> Slot confirmed available...",
+        "> Generating secure link..."
+    ];
+    
+    let msgIndex = 0;
+    let interval = setInterval(() => {
+        width += 1;
+        bar.style.width = width + '%';
+        if (width % 20 === 0 && msgIndex < messages.length) {
+            status.innerText = messages[msgIndex];
+            msgIndex++;
         }
+        if (width >= 100) {
+            clearInterval(interval);
+            setTimeout(() => {
+                document.getElementById('step-2').style.display = 'none';
+                document.getElementById('step-3').style.display = 'block';
+            }, 500);
+        }
+    }, 40);
+}
 
         // 3. FUNCIÓN PARA LLAMAR AL LOCKER
         function triggerLocker() {
