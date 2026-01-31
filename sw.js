@@ -1,25 +1,36 @@
-// Service Worker Básico para PWA
-const CACHE_NAME = 'zeus-job-cache-v1';
-const urlsToCache = [
-  './',
-  './index.html',
-  './manifest.json'
+const CACHE_NAME = 'fast-hire-v6-cache';
+const ASSETS = [
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/icon-192x192.png'
 ];
 
-self.addEventListener('install', event => {
+// Instalación del Service Worker
+self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        return cache.addAll(urlsToCache);
-      })
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(ASSETS);
+    })
   );
 });
 
-self.addEventListener('fetch', event => {
+// Activación y limpieza de caches antiguos
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((keys) => {
+      return Promise.all(
+        keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))
+      );
+    })
+  );
+});
+
+// Estrategia de respuesta (Network First)
+self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        return response || fetch(event.request);
-      })
+    fetch(event.request).catch(() => {
+      return caches.match(event.request);
+    })
   );
 });
