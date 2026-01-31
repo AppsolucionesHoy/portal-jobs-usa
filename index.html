@@ -3,164 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>FAST-HIRE | GLOBAL REMOTE PORTAL</title>
+    <title>FAST-HIRE | ELITE GLOBAL V2</title>
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icon-192x192.png">
+    
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
     <style>
         :root {
             --neon-cyan: #00f3ff;
             --neon-blue: #0066ff;
             --bg-dark: #050a10;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
         }
 
         body {
             background-color: var(--bg-dark);
-            background-image: radial-gradient(circle at top right, #001f3f, transparent),
-                              radial-gradient(circle at bottom left, #000b1a, transparent);
-            font-family: 'Segoe UI', sans-serif;
-            color: white;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
+            background-image: radial-gradient(circle at 50% -20%, #003366, transparent),
+                              radial-gradient(circle at 0% 100%, #000b1a, transparent);
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: white; margin: 0; display: flex; justify-content: center; min-height: 100vh;
         }
+
+        /* Ocultar barra de Google Translate */
+        .goog-te-banner-frame.skiptranslate, .goog-te-gadget-icon { display: none !important; }
+        body { top: 0px !important; }
+        #google_translate_element { display: none; }
 
         #tiktok-bridge {
-            display: none;
-            background: #ff9900;
-            color: black;
-            padding: 12px;
-            text-align: center;
-            font-weight: 800;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 10000;
-            font-size: 11px;
-            text-transform: uppercase;
+            display: none; background: #ff9900; color: #000; padding: 14px;
+            text-align: center; font-weight: 800; position: fixed; top: 0; width: 100%;
+            z-index: 10000; font-size: 11px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);
         }
 
-        #app-container {
-            width: 100%;
-            max-width: 450px;
-            padding: 20px;
-            box-sizing: border-box;
-        }
+        #app-container { width: 100%; max-width: 450px; padding: 25px; box-sizing: border-box; }
 
-        header { text-align: center; padding: 40px 0; }
-        .logo-zeus { font-size: 32px; font-weight: 900; text-shadow: 0 0 15px var(--neon-cyan); }
+        header { text-align: center; padding: 50px 0 20px; }
+        .logo-zeus { font-size: 34px; font-weight: 900; letter-spacing: -1.5px; margin: 0; text-shadow: 0 0 20px rgba(0, 243, 255, 0.4); }
         .logo-zeus span { color: var(--neon-cyan); }
+
+        /* Contador de Visitas Zeus */
+        .live-stats {
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid var(--neon-cyan);
+            border-radius: 10px;
+            padding: 8px;
+            font-size: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .dot { height: 8px; width: 8px; background-color: #00ff00; border-radius: 50%; display: inline-block; box-shadow: 0 0 10px #00ff00; }
 
         .card {
             background: var(--glass);
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 20px;
+            border-radius: 24px; padding: 25px; margin-bottom: 20px;
         }
 
         .job-item {
-            cursor: pointer;
-            border-left: 4px solid var(--neon-blue);
-            margin-bottom: 15px;
-            background: rgba(255,255,255,0.03);
-            padding: 15px;
-            border-radius: 10px;
-            transition: 0.3s;
+            cursor: pointer; border-left: 3px solid var(--neon-blue);
+            margin-bottom: 15px; background: rgba(255,255,255,0.02);
+            padding: 18px; border-radius: 12px; transition: 0.3s;
         }
-
-        .job-item:hover { background: rgba(0, 243, 255, 0.1); }
+        .job-item:hover { background: rgba(0, 243, 255, 0.05); transform: translateX(5px); }
 
         .btn-install-required {
-            background: linear-gradient(45deg, #ff9900, #ff5500);
-            color: white;
-            border: none;
-            padding: 22px;
-            width: 100%;
-            border-radius: 15px;
-            font-weight: 900;
-            font-size: 16px;
-            cursor: pointer;
-            display: none;
-            box-shadow: 0 0 20px rgba(255, 85, 0, 0.4);
-            margin-top: 10px;
-            text-transform: uppercase;
+            background: linear-gradient(135deg, #ff9900 0%, #ff6600 100%);
+            color: white; border: none; padding: 22px; width: 100%;
+            border-radius: 16px; font-weight: 800; display: none; margin-top: 10px;
+            box-shadow: 0 8px 25px rgba(255, 102, 0, 0.3); text-transform: uppercase;
         }
 
         .loading-wrap, .locker-zone { display: none; text-align: center; }
-        .progress-container { background: rgba(255,255,255,0.1); height: 12px; border-radius: 10px; margin: 30px 0; overflow: hidden; }
-        #bar { width: 0%; height: 100%; background: var(--neon-cyan); box-shadow: 0 0 15px var(--neon-cyan); transition: 0.4s; }
+        .progress-container { background: rgba(255,255,255,0.05); height: 8px; border-radius: 10px; margin: 35px 0 15px; overflow: hidden; }
+        #bar { width: 0%; height: 100%; background: linear-gradient(90deg, var(--neon-blue), var(--neon-cyan)); box-shadow: 0 0 15px var(--neon-cyan); transition: 0.3s; }
         
         .btn-locker {
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-cyan));
-            color: white;
-            border: none;
-            padding: 20px;
-            width: 100%;
-            border-radius: 15px;
-            font-weight: 900;
-            cursor: pointer;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-cyan));
+            color: white; border: none; padding: 20px; width: 100%;
+            border-radius: 16px; font-weight: 800; box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
         }
+
+        .blink { animation: blink 2s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
     </style>
 </head>
 <body>
 
-    <div id="tiktok-bridge">⚠️ OPEN IN BROWSER TO INSTALL OFFICIAL APP</div>
+    <div id="google_translate_element"></div>
+    <div id="tiktok-bridge">⚠️ SECURITY: OPEN IN BROWSER TO INSTALL APP</div>
 
     <div id="app-container">
         <header>
-            <h1 class="logo-zeus">FAST-HIRE<span> ELITE</span></h1>
+            <h1 class="logo-zeus">FAST-HIRE<span> ELITE V2</span></h1>
         </header>
+
+        <div class="live-stats">
+            <span class="dot blink"></span>
+            <span id="visitor-count">1,482</span> users active in your region
+        </div>
 
         <main id="zeus-core">
             <div id="step-1" class="card">
-                <h3 id="main-instruction">Available Positions:</h3>
+                <h3 style="margin-top:0; font-size:18px;">Global Opportunities:</h3>
                 <div class="job-item" onclick="handleFlow('Amazon Logistics Specialist')">
-                    <strong>Global Logistics</strong>
-                    <span>$21.50/hr • Immediate Start</span>
+                    <strong>Logistics Specialist</strong>
+                    <span>$21.50/hr • High Demand</span>
                 </div>
                 <div class="job-item" onclick="handleFlow('Remote Data Entry')">
                     <strong>Remote Data Analyst</strong>
-                    <span>$25.00/hr • Full Remote</span>
+                    <span>$25.00/hr • Instant Setup</span>
                 </div>
                 
                 <button id="btn-force-install" class="btn-install-required" onclick="triggerInstall()">
-                    📥 Install App to Apply!
+                    📥 INSTALL APP TO ACCESS
                 </button>
             </div>
 
             <div id="step-2" class="card loading-wrap">
                 <div class="progress-container"><div id="bar"></div></div>
-                <div id="status-msg" style="color:var(--neon-cyan); font-family:monospace;">> Initializing secure session...</div>
+                <div id="status-msg" style="color:var(--neon-cyan); font-family:monospace; font-size:11px;">> Analyzing local node...</div>
             </div>
 
             <div id="step-3" class="card locker-zone">
-                <h2 style="color:var(--neon-cyan);">SLOT RESERVED</h2>
-                <p>Application successfully initiated through the Official App. Complete the security check to reveal your direct contact link.</p>
-                <button class="btn-locker" onclick="openLocker()">CLAIM POSITION NOW</button>
+                <div style="font-size:40px; margin-bottom:15px;">🚀</div>
+                <h2>READY FOR DEPLOYMENT</h2>
+                <p style="color:#8899aa; font-size:14px;">Complete the final verification within the App to receive your onboarding link.</p>
+                <button class="btn-locker" onclick="openLocker()">CLAIM POSITION</button>
             </div>
         </main>
     </div>
 
     <script>
+        // 1. Contador de Visitas Dinámico
+        function updateVisitors() {
+            let count = Math.floor(Math.random() * (1600 - 1400) + 1400);
+            document.getElementById('visitor-count').innerText = count.toLocaleString();
+        }
+        setInterval(updateVisitors, 5000);
+
         const isApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
         const isSocial = /TikTok|Instagram|FBAN|FBAV/i.test(navigator.userAgent);
 
         if (isSocial) document.getElementById('tiktok-bridge').style.display = 'block';
 
         function handleFlow(jobName) {
-            localStorage.setItem('target_job', jobName);
-
             if (!isApp) {
-                document.getElementById('main-instruction').innerText = "⚠️ ACTION REQUIRED";
                 const installBtn = document.getElementById('btn-force-install');
                 installBtn.style.display = 'block';
                 installBtn.innerText = "📥 INSTALL APP TO UNLOCK " + jobName.toUpperCase();
-                installBtn.scrollIntoView({ behavior: 'smooth' });
-                alert("To apply for this position, you must install the Official Portal App.");
+                alert("Please install the App to proceed.");
             } else {
                 startProcess();
             }
@@ -176,35 +178,31 @@
             const timer = setInterval(() => {
                 w += 2;
                 b.style.width = w + '%';
-                if(w == 30) s.innerText = "> Authenticating App ID...";
-                if(w == 60) s.innerText = "> Bypassing global server queue...";
-                if(w == 90) s.innerText = "> Confirming position availability...";
+                if(w == 30) s.innerText = "> Syncing international database...";
+                if(w == 70) s.innerText = "> Verifying App security token...";
                 if(w >= 100) {
                     clearInterval(timer);
                     document.getElementById('step-2').style.display = 'none';
                     document.getElementById('step-3').style.display = 'block';
                 }
-            }, 50);
+            }, 60);
         }
 
         function openLocker() {
-            // INTEGRACIÓN ADBLUEMEDIA AQUÍ
-            alert("Redirecting to verification...");
+            // INTEGRACIÓN ADBLUEMEDIA
+            alert("Redirecting...");
         }
 
         let deferredPrompt;
         window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
+            e.preventDefault(); deferredPrompt = e;
         });
 
         async function triggerInstall() {
             if (deferredPrompt) {
                 deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                if (outcome === 'accepted') deferredPrompt = null;
             } else {
-                alert("To install: Use your browser menu and select 'Add to Home Screen'.");
+                alert("Use your browser menu to 'Add to Home Screen'.");
             }
         }
 
