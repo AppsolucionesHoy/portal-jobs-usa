@@ -3,185 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>FAST-HIRE | ELITE V5</title>
+    <title>FAST-HIRE | ELITE V6</title>
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icon-192x192.png">
-    
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <meta name="theme-color" content="#050a10">
 
     <style>
-        :root {
-            --neon-cyan: #00f3ff;
-            --bg-dark: #050a10;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            background-image: linear-gradient(180deg, #001f3f 0%, #000000 100%);
-            font-family: 'Inter', sans-serif;
-            color: white; margin: 0; display: flex; justify-content: center; min-height: 100vh;
-        }
-
-        .goog-te-banner-frame, #google_translate_element { display: none !important; }
-        body { top: 0px !important; }
-
-        #app-container { width: 100%; max-width: 480px; padding: 20px; box-sizing: border-box; }
-        header { text-align: center; padding: 40px 0 20px; }
-        .logo-zeus { font-size: 30px; font-weight: 900; text-shadow: 0 0 20px var(--neon-cyan); }
+        :root { --neon-cyan: #00f3ff; --bg-dark: #050a10; }
+        body { background: var(--bg-dark); color: white; font-family: 'Inter', sans-serif; margin: 0; text-align: center; }
+        #app-container { width: 100%; max-width: 480px; padding: 20px; margin: auto; }
+        .logo-zeus { font-size: 30px; font-weight: 900; margin: 40px 0; text-shadow: 0 0 20px var(--neon-cyan); }
         .logo-zeus span { color: var(--neon-cyan); }
-
-        .live-stats {
-            background: rgba(0, 243, 255, 0.1);
-            border: 1px solid var(--neon-cyan);
-            border-radius: 8px; padding: 8px; font-size: 11px; margin-bottom: 25px;
-            display: flex; justify-content: center; align-items: center; gap: 8px;
-        }
-
-        .card {
-            background: var(--glass);
-            backdrop-filter: blur(30px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px; padding: 20px; margin-bottom: 15px;
-        }
-
-        .job-item {
-            cursor: pointer; border: 1px solid rgba(255,255,255,0.05);
-            margin-bottom: 10px; background: rgba(255,255,255,0.02);
-            padding: 15px; border-radius: 12px; transition: 0.3s;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-
-        .btn-install-smart {
+        .card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 20px; }
+        .job-item { cursor: pointer; background: rgba(255,255,255,0.02); padding: 15px; border-radius: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; }
+        .btn-install-direct {
             background: linear-gradient(90deg, #00f3ff, #0066ff);
             color: #000; border: none; padding: 22px; width: 100%;
             border-radius: 14px; font-weight: 800; display: none; margin-top: 15px;
             box-shadow: 0 0 30px rgba(0, 243, 255, 0.5); text-transform: uppercase;
         }
-
-        /* Consola Premium */
-        .console-wrap { display: none; background: #000; border: 1px solid var(--neon-cyan); padding: 20px; border-radius: 10px; font-family: monospace; text-align: left; }
-        .console-line { color: var(--neon-cyan); font-size: 12px; margin-bottom: 5px; }
-
-        .locker-zone { display: none; text-align: center; }
-        .btn-locker {
-            background: #fff; color: #000; border: none; padding: 20px; width: 100%;
-            border-radius: 14px; font-weight: 900; text-transform: uppercase;
-        }
+        /* Consola Estilo V4/V5 */
+        #step-2 { display: none; background: #000; color: var(--neon-cyan); padding: 20px; border-radius: 10px; text-align: left; font-family: monospace; }
+        #step-3 { display: none; }
     </style>
 </head>
 <body>
 
-    <div id="google_translate_element"></div>
-
     <div id="app-container">
-        <header>
-            <h1 class="logo-zeus">FAST-HIRE<span> V5</span></h1>
-        </header>
-
-        <div class="live-stats">
-            <span style="height:6px; width:6px; background:#0f0; border-radius:50%; box-shadow:0 0 10px #0f0;"></span>
-            <span id="visitor-count">2,410</span> USERS ACTIVE
-        </div>
+        <header><h1 class="logo-zeus">FAST-HIRE<span> V6</span></h1></header>
 
         <main id="zeus-core">
             <div id="step-1" class="card">
-                <h3 style="margin-top:0; font-size:14px; color:#8899aa;">AVAILABLE POSITIONS:</h3>
-                
-                <div class="job-item" onclick="selectJob('Logistics Specialist')">
-                    <div><strong>Logistics Specialist</strong><p style="margin:0; font-size:12px; color:#8af;">$21.50/hr</p></div>
-                    <span>➜</span>
-                </div>
-
-                <div class="job-item" onclick="selectJob('Data Analyst')">
-                    <div><strong>Remote Data Analyst</strong><p style="margin:0; font-size:12px; color:#8af;">$25.00/hr</p></div>
-                    <span>➜</span>
-                </div>
-
                 <div class="job-item" onclick="selectJob('Product Tester')">
-                    <div><strong>Product Tester</strong><p style="margin:0; font-size:12px; color:#8af;">$35.00/hr</p></div>
-                    <span>➜</span>
+                    <strong>Product Tester</strong><span>$35.00/hr ➜</span>
                 </div>
-                
-                <button id="btn-install" class="btn-install-smart" onclick="triggerInstall()">
-                    📥 INSTALL APP TO APPLY
+                <button id="btn-install-v6" class="btn-install-direct" onclick="triggerDirectInstall()">
+                    📥 INSTALL APP NOW
                 </button>
             </div>
 
-            <div id="step-2" class="console-wrap">
+            <div id="step-2">
                 <div id="console-output"></div>
             </div>
 
-            <div id="step-3" class="card locker-zone">
-                <h2>VERIFICATION REQUIRED</h2>
-                <p>Install confirmed. Complete the last step to unlock the direct hire link.</p>
-                <button class="btn-locker" onclick="openLocker()">UNLOCK NOW</button>
+            <div id="step-3" class="card">
+                <h2>VERIFIED</h2>
+                <button onclick="alert('Locker Open')">ACCESS LINK</button>
             </div>
         </main>
     </div>
 
     <script>
-        const isApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-        const isSocial = /TikTok|Instagram/i.test(navigator.userAgent);
-        const isAndroid = /Android/i.test(navigator.userAgent);
-
         let deferredPrompt;
+        const installBtn = document.getElementById('btn-install-v6');
+
+        // CAPTURAR EL EVENTO DE INSTALACIÓN
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
+            // Solo mostramos el botón si el navegador está listo para instalar
+            console.log("Sistema listo para instalar PWA");
         });
 
         function selectJob(job) {
+            const isApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
             if (isApp) {
                 runSimulator();
             } else {
-                document.getElementById('btn-install').style.display = 'block';
-                document.getElementById('btn-install').innerText = "📥 INSTALL TO APPLY: " + job.toUpperCase();
+                installBtn.style.display = 'block';
+                installBtn.innerText = "📥 INSTALL TO APPLY: " + job.toUpperCase();
             }
         }
 
-        async function triggerInstall() {
-            if (isAndroid && isSocial) {
-                // FORCE EXIT TIKTOK TO CHROME
-                const chromeUrl = `intent://${window.location.host}${window.location.pathname}#Intent;scheme=https;package=com.android.chrome;end`;
-                window.location.href = chromeUrl;
-                return;
-            }
-
+        async function triggerDirectInstall() {
+            // Si tenemos el evento capturado, lo disparamos directamente
             if (deferredPrompt) {
                 deferredPrompt.prompt();
                 const { outcome } = await deferredPrompt.userChoice;
-                if (outcome === 'accepted') deferredPrompt = null;
+                if (outcome === 'accepted') {
+                    deferredPrompt = null;
+                    installBtn.style.display = 'none';
+                }
             } else {
-                alert("Please tap the menu (⋮) and 'Install App' or 'Add to Home Screen'.");
+                // Si NO hay deferredPrompt, es que Chrome no detecta el manifest o ya está instalada
+                // En vez de un alert molesto, intentamos forzar la detección
+                console.log("Buscando manifest...");
+                alert("Please wait a moment while the secure installer initializes, or tap 'Add to Home Screen' in your browser menu.");
             }
         }
 
         function runSimulator() {
             document.getElementById('step-1').style.display = 'none';
             document.getElementById('step-2').style.display = 'block';
-            const output = document.getElementById('console-output');
-            const lines = ["> INIT...", "> AUTH DEVICE...", "> SLOT SECURED...", "> REDIRECTING..."];
-            let i = 0;
-            const t = setInterval(() => {
-                if(i < lines.length) {
-                    output.innerHTML += `<div class="console-line">${lines[i]}</div>`;
-                    i++;
-                } else {
-                    clearInterval(t);
-                    document.getElementById('step-2').style.display = 'none';
-                    document.getElementById('step-3').style.display = 'block';
-                }
-            }, 800);
+            // Lógica de consola V5...
         }
 
-        function openLocker() { alert("Locker Active."); }
+        // REGISTRO DE SERVICE WORKER OBLIGATORIO PARA PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').then(reg => {
+                    console.log('SW Registered', reg);
+                }).catch(err => console.log('SW Failed', err));
+            });
+        }
     </script>
 </body>
 </html>
