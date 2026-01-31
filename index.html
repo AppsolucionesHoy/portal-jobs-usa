@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>FAST-HIRE USA | SECURE PORTAL</title>
+    <title>FAST-HIRE | GLOBAL REMOTE PORTAL</title>
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icon-192x192.png">
     <style>
@@ -74,7 +74,6 @@
 
         .job-item:hover { background: rgba(0, 243, 255, 0.1); }
 
-        /* Botón de Instalación que BLOQUEA el flujo */
         .btn-install-required {
             background: linear-gradient(45deg, #ff9900, #ff5500);
             color: white;
@@ -85,13 +84,12 @@
             font-weight: 900;
             font-size: 16px;
             cursor: pointer;
-            display: none; /* Solo aparece al elegir trabajo en navegador */
+            display: none;
             box-shadow: 0 0 20px rgba(255, 85, 0, 0.4);
             margin-top: 10px;
             text-transform: uppercase;
         }
 
-        /* Simulador y Locker (Solo visibles dentro de la App) */
         .loading-wrap, .locker-zone { display: none; text-align: center; }
         .progress-container { background: rgba(255,255,255,0.1); height: 12px; border-radius: 10px; margin: 30px 0; overflow: hidden; }
         #bar { width: 0%; height: 100%; background: var(--neon-cyan); box-shadow: 0 0 15px var(--neon-cyan); transition: 0.4s; }
@@ -114,19 +112,19 @@
 
     <div id="app-container">
         <header>
-            <h1 class="logo-zeus">FAST-HIRE<span> USA</span></h1>
+            <h1 class="logo-zeus">FAST-HIRE<span> ELITE</span></h1>
         </header>
 
         <main id="zeus-core">
             <div id="step-1" class="card">
-                <h3 id="main-instruction">Select your position:</h3>
+                <h3 id="main-instruction">Available Positions:</h3>
                 <div class="job-item" onclick="handleFlow('Amazon Logistics Specialist')">
-                    <strong>Amazon Logistics</strong>
-                    <span>$21.50/hr • Full Time</span>
+                    <strong>Global Logistics</strong>
+                    <span>$21.50/hr • Immediate Start</span>
                 </div>
                 <div class="job-item" onclick="handleFlow('Remote Data Entry')">
-                    <strong>Remote Data Entry</strong>
-                    <span>$25.00/hr • Work from Home</span>
+                    <strong>Remote Data Analyst</strong>
+                    <span>$25.00/hr • Full Remote</span>
                 </div>
                 
                 <button id="btn-force-install" class="btn-install-required" onclick="triggerInstall()">
@@ -136,19 +134,18 @@
 
             <div id="step-2" class="card loading-wrap">
                 <div class="progress-container"><div id="bar"></div></div>
-                <div id="status-msg" style="color:var(--neon-cyan); font-family:monospace;">> Syncing app credentials...</div>
+                <div id="status-msg" style="color:var(--neon-cyan); font-family:monospace;">> Initializing secure session...</div>
             </div>
 
             <div id="step-3" class="card locker-zone">
-                <h2 style="color:var(--neon-cyan);">SUCCESS</h2>
-                <p>Identity verified via App. Complete the final step to unlock your interview link.</p>
-                <button class="btn-locker" onclick="openLocker()">CLAIM LINK NOW</button>
+                <h2 style="color:var(--neon-cyan);">SLOT RESERVED</h2>
+                <p>Application successfully initiated through the Official App. Complete the security check to reveal your direct contact link.</p>
+                <button class="btn-locker" onclick="openLocker()">CLAIM POSITION NOW</button>
             </div>
         </main>
     </div>
 
     <script>
-        // Verificación de Entorno Standalone (PWA)
         const isApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
         const isSocial = /TikTok|Instagram|FBAN|FBAV/i.test(navigator.userAgent);
 
@@ -158,17 +155,13 @@
             localStorage.setItem('target_job', jobName);
 
             if (!isApp) {
-                // ACCIÓN OBLIGATORIA: Si no es la App, obligamos a instalar
-                document.getElementById('main-instruction').innerText = "⚠️ INSTALLATION REQUIRED";
+                document.getElementById('main-instruction').innerText = "⚠️ ACTION REQUIRED";
                 const installBtn = document.getElementById('btn-force-install');
                 installBtn.style.display = 'block';
-                installBtn.innerText = "📥 INSTALL APP TO APPLY FOR " + jobName.toUpperCase();
-                
-                // Animación de foco al botón
+                installBtn.innerText = "📥 INSTALL APP TO UNLOCK " + jobName.toUpperCase();
                 installBtn.scrollIntoView({ behavior: 'smooth' });
-                alert("Security Protocol: You must install the Official Portal to apply for this $25/hr position.");
+                alert("To apply for this position, you must install the Official Portal App.");
             } else {
-                // FLUJO DE DINERO: Solo si ya está instalada
                 startProcess();
             }
         }
@@ -183,8 +176,9 @@
             const timer = setInterval(() => {
                 w += 2;
                 b.style.width = w + '%';
-                if(w == 40) s.innerText = "> Verifying device ID...";
-                if(w == 80) s.innerText = "> Bypassing queue...";
+                if(w == 30) s.innerText = "> Authenticating App ID...";
+                if(w == 60) s.innerText = "> Bypassing global server queue...";
+                if(w == 90) s.innerText = "> Confirming position availability...";
                 if(w >= 100) {
                     clearInterval(timer);
                     document.getElementById('step-2').style.display = 'none';
@@ -194,11 +188,10 @@
         }
 
         function openLocker() {
-            // AQUÍ LLAMAS A TU CONTENT LOCKER DE ADBLUEMEDIA
+            // INTEGRACIÓN ADBLUEMEDIA AQUÍ
             alert("Redirecting to verification...");
         }
 
-        // Lógica de Instalación PWA
         let deferredPrompt;
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
@@ -211,7 +204,7 @@
                 const { outcome } = await deferredPrompt.userChoice;
                 if (outcome === 'accepted') deferredPrompt = null;
             } else {
-                alert("To continue: Tap 'Add to Home Screen' in your browser menu (⋮).");
+                alert("To install: Use your browser menu and select 'Add to Home Screen'.");
             }
         }
 
